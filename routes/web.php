@@ -11,6 +11,8 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -19,4 +21,11 @@ Route::get('hello', function () {
     return "hello";
 });
 
-Route::resource('articles', 'ArticleController');
+Route::get('comptes', function() {
+    //Réservé aux utilisateurs authentifié
+})->middleware('auth');
+
+/*Auth::routes();*/
+Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('/skill', 'SkillController');
+Route::get('/skillMe', 'SkillController@oneUse');

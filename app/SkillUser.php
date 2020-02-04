@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Utilisateur extends Model
+class SkillUser extends Model
 {
     //
 }
