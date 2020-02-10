@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Skill extends Model
 {
     protected $fillable = [
-
+"name", "description"
     ];
     /**
      * Récupère les utilisateurs possédant cette compétence
@@ -17,3 +17,4 @@ class Skill extends Model
 	return $this->belongsToMany('App\User')->withPivot('level');
      }
 }
+

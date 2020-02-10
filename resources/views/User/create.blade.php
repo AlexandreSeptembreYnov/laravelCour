@@ -1,4 +1,4 @@
-@extends('dashboardUser.layout')
+@extends('User.layout')
 
 
 
@@ -10,7 +10,7 @@
 
             <div class="pull-left">
 
-                <h2>Edit skill</h2>
+                <h2>Add New skill</h2>
 
             </div>
 
@@ -48,11 +48,9 @@
 
 
 
-    <form action="{{ route('skill.update',$skill->id) }}" method="POST">
+    <form action="{{ route('user.store') }}" method="POST">
 
         @csrf
-
-        @method('PUT')
 
 
 
@@ -62,10 +60,15 @@
 
                 <div class="form-group">
 
-                    <strong>Name:</strong>
+                    <strong>Level:</strong>
 
-                    <input type="text" name="nom" value="{{ $skill->name }}" class="form-control" placeholder="Name">
-
+                    <select name="level">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
                 </div>
 
             </div>
@@ -74,10 +77,13 @@
 
                 <div class="form-group">
 
-                    <strong>Detail:</strong>
+                    <strong>Skill:</strong>
 
-                    <textarea class="form-control" style="height:150px" name="description" placeholder="Detail">{{ $skill->description }}</textarea>
-
+                    <select name="skill_id">
+                        @foreach ($skills as $skill)
+                        <option value="{{$skill->id}}">{{$skill->name}}</option>
+                        @endforeach
+                    </select>
                 </div>
 
             </div>

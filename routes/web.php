@@ -28,4 +28,4 @@ Route::get('comptes', function() {
 /*Auth::routes();*/
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/skill', 'SkillController');
-Route::get('/skillMe', 'SkillController@oneUse');
+Route::resource('/user', 'SkillUserController');

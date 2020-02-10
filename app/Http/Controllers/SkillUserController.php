@@ -2,24 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\SkillUser;
 use App\User;
 use App\Skill;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
-class SkillController extends Controller
+class SkillUserController extends Controller
 {
 
     public function index()
 
     {
-$skills = Skill::latest()->paginate(5);
-        //$skills = Auth::user()->skills()->paginate(5);
+        $skills = Auth::user()->skills()->paginate(5);
 
 
 
-        return view('dashboardAdmin.index',compact('skills'))
+        return view('User.index',compact('skills'))
             ->with('i', (request()->input('page', 1) - 1)*5);
     }
 
@@ -38,8 +38,8 @@ $skills = Skill::latest()->paginate(5);
     public function create()
 
     {
-
-        return view('dashboardAdmin.create');
+        $skills = Skill::all();
+        return view('User.create',compact('skills'));
 
     }
 
@@ -63,16 +63,15 @@ $skills = Skill::latest()->paginate(5);
 
         $request->validate([
 
-            'name' => 'required',
+            'skill_id' => 'required',
 
-            'description' => 'required',
+            'level' => 'required',
 
         ]);
 
 
 
-        //Skill::create($request->all());
-        Skill::create(['name' => $request->name, 'description' => $request->description]);
+        SkillUser::create(['skill_id' => $request->skill_id, 'user_id' => Auth::user()->id, 'level' => $request->level]);
 
 
         return redirect()->route('skill.index')
@@ -99,7 +98,7 @@ $skills = Skill::latest()->paginate(5);
 
     {
 
-        return view('dashboardAdmin.show',compact('skill'));
+        return view('User.show',compact('skill'));
 
     }
 
@@ -121,7 +120,7 @@ $skills = Skill::latest()->paginate(5);
 
     {
 
-        return view('dashboardAdmin.edit',compact('skill'));
+        return view('User.edit',compact('skill'));
 
     }
 
@@ -147,18 +146,15 @@ $skills = Skill::latest()->paginate(5);
 
         $request->validate([
 
-            'name' => 'required',
+            'skill_id' => 'required',
 
-            'description' => 'required',
+            'level' => 'required',
 
         ]);
 
 
 
-        //Skill::create($request->all());
-        Skill::create(['name' => $request->name, 'description' => $request->description]);
-
-
+        SkillUser::update(['skill_id' => $request->skill_id, 'user_id' => $request->user_id, 'level' => $request->level]);
 
 
         return redirect()->route('skill.index')

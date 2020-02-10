@@ -1,4 +1,4 @@
-@extends('dashboardUser.layout')
+@extends('dashboardAdmin.layout')
 
 
 
@@ -16,7 +16,7 @@
 
             <div class="pull-right">
 
-                <a class="btn btn-primary" href="{{ route('skill.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('user.index') }}"> Back</a>
 
             </div>
 
@@ -62,7 +62,7 @@
 
                     <strong>Nom:</strong>
 
-                    <input type="text" name="nom" class="form-control" placeholder="Name">
+                    <input type="text" name="name" class="form-control" placeholder="Name">
 
                 </div>
 

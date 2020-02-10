@@ -1,4 +1,4 @@
-@extends('dashboardUser.layout')
+@extends('dashboardAdmin.layout')
 
 
 
@@ -97,7 +97,7 @@
     </table>
 
 
-     
+
 
 
 
